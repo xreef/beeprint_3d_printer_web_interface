@@ -129,7 +129,10 @@
     "websocket.error": "Error <br>Not connected!",
 
     "websocket.message.preheat.sended": "Command pre heat for toot {tool} ad temp {preHeatTemp} sended!",
-    "websocket.message.preheat.button": "Pre-Heat"
+    "websocket.message.preheat.button": "Pre-Heat",
+
+    "iframe.button.move": "Drag to move",
+    "iframe.button.close": "Click to close"
   },
   "it": {
     "layouts.set": "Il layout è stato salvato sul dispositivo",
@@ -259,7 +262,10 @@
 
     "websocket.open": "Stampante connessa",
     "websocket.close": "Stampante disconnessa",
-    "websocket.error": "Errore <br>Impossibile stabilire una connessione"
+    "websocket.error": "Errore <br>Impossibile stabilire una connessione",
+
+    "iframe.button.move": "Trascina per muovere",
+    "iframe.button.close": "Clicca per chiudere"
   },
   "ru": {
     "layouts.set": "Макет страницы сохраняются на устройстве",
@@ -389,6 +395,9 @@
     "websocket.error": "Ошибка <br>Нет соединения!",
 
     "websocket.message.preheat.sended": "Команда преднагрева для {tool} на температуру {preHeatTemp} отправлена!",
-    "websocket.message.preheat.button": "Преднагрев"
+    "websocket.message.preheat.button": "Преднагрев",
+
+    "iframe.button.move": "Перетаскивать",
+    "iframe.button.close": "Нажмите, чтобы закрыть"
   }
 }

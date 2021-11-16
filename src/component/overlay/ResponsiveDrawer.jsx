@@ -5,14 +5,20 @@ import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import DragHandle from '@material-ui/icons/DragHandle';
+import ControlPoint from '@material-ui/icons/ControlPoint';
 
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import Hidden from '@material-ui/core/Hidden';
 import Divider from '@material-ui/core/Divider';
 import MenuIcon from '@material-ui/icons/Menu';
+import Tooltip from '@material-ui/core/Tooltip'
+import { Fab } from '@material-ui/core'
+import SaveIcon from '@material-ui/icons/Save'
+import KeyboardArrowDownOutlined from '@material-ui/icons/KeyboardArrowDownOutlined'
+import { FormattedMessage } from 'react-intl'
 
-const drawerHeight = 240;
+const drawerHeight = 45;
 
 const styles = theme => ({
   root: {
@@ -34,6 +40,10 @@ const styles = theme => ({
   toolbar: theme.mixins.toolbar,
   drawerPaper: {
     height: drawerHeight,
+    overflow: "hidden",
+    paddingTop: 16,
+    backgroundColor: "transparent",
+    border: "none"
   },
   content: {
     flexGrow: 1,
@@ -41,7 +51,7 @@ const styles = theme => ({
     padding: theme.spacing.unit * 3
   },
   dragger: {
-    top: 0,
+    top: 16,
     left: 0,
     right: 0,
     cursor: "ns-resize",
@@ -70,7 +80,7 @@ class ResponsiveDrawer extends React.Component {
 
   handleMousedown = e => {
     e.preventDefault();
-    this.setState({ isResizing: true, lastDownY: e.clientY });
+    this.setState({ isResizing: true, lastDownY: e.clientY  || e.targetTouches[0].pageY });
 
     this.props.toggleDrawer(true);
   };
@@ -83,7 +93,7 @@ class ResponsiveDrawer extends React.Component {
     }
 
     let offsetBottom =
-      document.body.offsetHeight - (e.clientY - document.body.offsetTop);
+      document.body.offsetHeight - (e.clientY || e.targetTouches[0].pageY - document.body.offsetTop);
     let minHeight = 3;
     let maxHeight = window.innerHeight-3;
     if (offsetBottom > minHeight && offsetBottom < maxHeight) {
@@ -99,6 +109,16 @@ class ResponsiveDrawer extends React.Component {
   componentDidMount() {
     document.addEventListener('mousemove', e => this.handleMousemove(e));
     document.addEventListener('mouseup', e => this.handleMouseup(e));
+    document.addEventListener('touchmove', e => this.handleMousemove(e));
+    document.addEventListener('touchend', e => this.handleMouseup(e));
+  }
+
+  componentWillUnmount () {
+    document.removeEventListener('mousemove', e => this.handleMousemove(e));
+    document.removeEventListener('mouseup', e => this.handleMouseup(e));
+
+    document.removeEventListener('touchmove', e => this.handleMousemove(e));
+    document.removeEventListener('touchend', e => this.handleMouseup(e));
   }
 
   componentDidUpdate (prevProps, prevState, snapshot) {
@@ -130,7 +150,31 @@ class ResponsiveDrawer extends React.Component {
               }}
               className={classes.dragger}
             />
+            <Tooltip key="moveButtonTooltipId" placement="top" title={<FormattedMessage id="iframe.button.move" />}>
+              <Fab aria-label="Move"
+                   style={   {
+                     top: 0,
+                     left: "calc( 50% - 21px )",
+                     cursor: "grab",
+                     zIndex: 150,
+                     position: "absolute",
+                     width: "42px",
+                     height: "42px"
+                    }}
+                 color="secondary"
+                 onMouseDown={event => {
+                    this.handleMousedown(event);
+                  }}
+                   onTouchStart={event => {
+                     this.handleMousedown(event);
+                   }}
+              >
+                <ControlPoint fontSize="large" />
+              </Fab>
+            </Tooltip>
+            <div style={{"width": "100%", "height": "100%"}}>
               {drawer}
+            </div>
           </Drawer>
         <main className={classes.content}>
           <div className={classes.toolbar} />

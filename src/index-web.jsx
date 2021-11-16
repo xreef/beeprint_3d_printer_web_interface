@@ -7,7 +7,7 @@ import { Provider } from 'react-redux';
 
 // eslint-disable-next-line import/no-extraneous-dependencies
 import 'intl';
-import { IntlProvider } from 'react-intl';
+import { FormattedMessage, IntlProvider } from 'react-intl'
 import '@formatjs/intl-pluralrules/locale-data/en';
 import '@formatjs/intl-pluralrules/locale-data/it';
 import { HashRouter, Switch, Route } from 'react-router-dom';
@@ -29,6 +29,7 @@ import indexRoutes from './routes/index';
 import axios from 'axios';
 import { Fab, SwipeableDrawer } from '@material-ui/core'
 import ResponsiveDrawer from './component/overlay/ResponsiveDrawer'
+import Tooltip from '@material-ui/core/Tooltip'
 
 if (!Intl.PluralRules) {
   require('@formatjs/intl-pluralrules/polyfill');
@@ -86,6 +87,8 @@ class App extends React.Component {
 
     // let data = dataFile;
 
+    // this.timeout = null;
+
     this.store = configureStore('beeprint_mks_wifi_mischianti_ui',
       {
         home: {
@@ -99,12 +102,18 @@ class App extends React.Component {
       true);
 
     this.state = {
-      advOpen: true
+      advOpen: true,
+      advUrl: 'https://www.mischianti.org/?ref=BeePrint'
     }
   }
 
   componentDidMount () {
     // axiosLibraryInterceptor(axios);
+    // this.timeout = setTimeout(() => {
+    //   this.toggleDrawer(true);
+    //   if (this.timeout) this.timeout = null;
+    // }, 10000);
+    this.checkURL();
   }
 
   toggleDrawer = (open) => (event) => {
@@ -114,6 +123,23 @@ class App extends React.Component {
 
     this.setState({ advOpen: open });
   };
+
+  checkURL = () => {
+    var request = new XMLHttpRequest();
+    request.open('GET', 'http://home.mischianti.org/advertising/beeprint.html', true);
+    request.onreadystatechange = () => {
+      if (request.readyState === 4){
+        if (request.status === 404) {
+          // alert("Oh no, it does not exist!");
+        } else if (request.status === 200) {
+          this.setState({
+            advUrl: 'http://home.mischianti.org/advertising/beeprint.html'
+          })
+        }
+      }
+    };
+    request.send();
+  }
 
   toggleDrawerCallback = (open) => {
     this.setState({ advOpen: open });
@@ -128,6 +154,8 @@ class App extends React.Component {
     const iOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
     // moment.locale(language);
 
+
+
     return (
       <Provider store={this.store}>
         <IntlProvider locale={language} messages={messages}>
@@ -141,23 +169,34 @@ class App extends React.Component {
             </HashRouter>
 
           </MuiThemeProvider>
-        </IntlProvider>
         <ResponsiveDrawer theme={{ direction: 'bottom'}} classes={{}} open={this.state.advOpen} toggleDrawer={this.toggleDrawerCallback} >
-          <Fab
-            variant="extended"
-            size="small"
-            color="primary"
-            aria-label="add"
-            style={{"position": "absolute", "backgroundColor": "crimson", "right": "12px", "top": "12px"}} onClick={this.toggleDrawer(false)}
-          >
-            <KeyboardArrowDownOutlined/>
-            Close
-          </Fab>
+          <Tooltip key="closeButtonTooltipId" placement="top" title={<FormattedMessage id="iframe.button.close" />}>
+            <Fab
+              variant="extended"
+              size="small"
+              color="secondary"
+              aria-label="close"
+              style={   {
+                top: 50,
+                left: "calc( 50% - 50px )",
+                cursor: "default",
+                zIndex: 150,
+                position: "absolute",
+                width: "100px",
+              }}
 
-          <iframe src="https://www.mischianti.org/?ref=BeePrint" style={{"height": "100%"}}>No data</iframe>
+              onClick={this.toggleDrawer(false)}
+              onTouchStart={this.toggleDrawer(false)}
+            >
+              <KeyboardArrowDownOutlined/>
+              Close
+            </Fab>
+          </Tooltip>
+
+          <iframe src={this.state.advUrl} style={{"height": "100%", "width": "100%", backgroundColor: "white", border: "none"}}>No data</iframe>
         </ResponsiveDrawer>
 
-
+        </IntlProvider>
       </Provider>
     );
   }
