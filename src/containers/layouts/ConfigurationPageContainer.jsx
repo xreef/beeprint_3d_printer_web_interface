@@ -11,7 +11,8 @@ import ConfigurationPage from '../../layouts/configuration/ConfigurationPage';
 
 const mapStateToProps = (state, ownProps) => ({
   configuration: state.configuration.data,
-  isFetching: state.configuration.isFetching
+  isFetching: state.configuration.isFetching,
+  version: state.version
 });
 
 const mapDispatchToProps = {

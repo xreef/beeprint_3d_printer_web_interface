@@ -36,8 +36,8 @@ import {
   setProgressPercentageValues,
   setPrintingFileInfo,
   setPrintingTime,
-  serverStateWIFIStrenghtFetchFulfilled
-} from '../actions';
+  serverStateWIFIStrenghtFetchFulfilled, setVersion, setFwVersion
+} from '../actions'
 import { cronEnd, cronStart } from '../actions/cron';
 
 // const wsListenLogic = createLogic({
@@ -113,6 +113,10 @@ const wsListenLogic = createLogic({
         } else if (e.data.startsWith('WIFI:')) {
           messageJson.type = 'WIFI';
           messageJson.signalStrengh = parseInt(e.data.substr(5, e.data.length-7));
+          messageJson.lastUpdate = new Date();
+        } else if (e.data.startsWith('FWV:')) {
+          messageJson.type = 'FIRMWARE_V';
+          messageJson.firmwareVersion = e.data.substr(4, e.data.length-6);
           messageJson.lastUpdate = new Date();
         } else if (e.data.startsWith('T:')) {
           // const basicToken = e.data.substr(0, e.data.length - 2).split(' /0 ');
@@ -227,6 +231,8 @@ const wsListenLogic = createLogic({
           dispatch(setPrintingTime(msg.h, msg.m, msg.s));
         } else if (msg.type === 'WIFI') {
           dispatch(serverStateWIFIStrenghtFetchFulfilled(msg));
+        } else if (msg.type === 'FIRMWARE_V') {
+          dispatch(setFwVersion(msg.firmwareVersion));
         }
 
         // if (msg.type === 'cumulated') {

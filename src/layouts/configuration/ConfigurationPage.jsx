@@ -180,7 +180,7 @@ class ConfigurationPage extends React.PureComponent {
 
     const labelAlertSelected = { none: messagesIntl.nothing, on_problem: messagesIntl.alert, all: messagesIntl.ever };
 
-    const { classes, configuration, isFetching, intl } = this.props;
+    const { classes, configuration, isFetching, intl, version } = this.props;
     const locale = intl.locale;
 
     return (
@@ -476,7 +476,7 @@ class ConfigurationPage extends React.PureComponent {
                   renzo@mischianti.org
                 </p>
                 <p className={classes.description}>
-                  <a href="https://www.mischianti.org">
+                  <a href="https://www.mischianti.org" target="_blank">
                     <img
                       src={siteLogo}
                       style={{
@@ -492,7 +492,17 @@ class ConfigurationPage extends React.PureComponent {
                   </a>
                 </p>
                 <p className={classes.description}>
-                  <a href="https://www.mischianti.org">
+                  <a href="https://www.mischianti.org/category/project/web-interface-beeprint-for-mks-wifi/"
+                     target="_blank"
+                     style={{ "display": "table",
+                              "textAlign": "center",
+                              "width": "100%"}}>
+                    <div style={{
+                      "display": "table-cell",
+                      "verticalAlign": "middle",
+                      "textAlign": "right",
+                      "width": "50%"
+                    }}>
                     <img
                       src={appLogo}
                       style={{
@@ -503,8 +513,18 @@ class ConfigurationPage extends React.PureComponent {
                       }
                       alt="BeePrint: Web interface for MKS WIFI (FlyingBear Ghost 5) 3D printer"
                     />
-
-                    BeePrint
+                    </div>
+                    <div style={{
+                                    "display": "table-cell",
+                                    "padding": "0px",
+                                    "verticalAlign": "top",
+                                    "textAlign": "left",
+                                    "lineHeight": "15px"
+                      }}>
+                      <font style={{"fontSize": "large", "textDecoration": "none"}}>BeePrint</font><br/>
+                    <font style={{"fontSize": "xx-small"}}>Web V: {version && version.version} <br/>
+                      Fw V: {version && version.version_fw}</font>
+                    </div>
                   </a>
                 </p>
                 <p className={classes.description}>
@@ -539,6 +559,7 @@ ConfigurationPage.propTypes = {
   configurationFetch: PropTypes.func.isRequired,
   configurationAdd: PropTypes.func.isRequired,
   // addNotification: PropTypes.func.isRequired,
-  configurationFieldUpdated: PropTypes.func.isRequired
+  configurationFieldUpdated: PropTypes.func.isRequired,
+  version: PropTypes.object
 };
 export default withStyles(boxStyle)(injectIntl(ConfigurationPage));

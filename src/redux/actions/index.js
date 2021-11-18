@@ -2,7 +2,7 @@
  * Created by renzo on 17/05/2017.
  */
 
-import { setVersion } from './version';
+import { setVersion, setFwVersion } from './version';
 import { addNotification, shiftNotification } from './notifications';
 import { setPushNotificationSupported, setServiceWorkerSubscription, setUserSubscribedToPushNotification } from './subscriptionsServiceWorker';
 import {
@@ -68,6 +68,7 @@ export {
   setPrinterStatsLayout,
 
   setVersion,
+  setFwVersion,
   addNotification,
   shiftNotification,
   setPushNotificationSupported,

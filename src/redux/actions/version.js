@@ -1,3 +1,8 @@
-export const setVersion = (versione) => ({
-    type: 'SET_VERSION'
+export const setVersion = (version) => ({
+  type: 'SET_VERSION',
+  version
+});
+export const setFwVersion = (version) => ({
+  type: 'SET_FW_VERSION',
+  version
 });
