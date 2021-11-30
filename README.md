@@ -1,5 +1,8 @@
 # BeePrint
 ## MKS WiFi [MISCHIANTI](www.mischianti.org) Web Interface
+I decided to make the WiFi module of my FlyingBear Ghost 5 more functional. I rewrote the firmware of the Makerbase MKS WiFi module and created a Web interface capable of managing all aspects of the printer and also a camera to control the process.
+
+###[Tutorial and documentation](https://www.mischianti.org/category/project/web-interface-beeprint-for-mks-wifi/)
 
 ![](src/resources/images/favicon/launcher-icon-3x.png?raw=true)
 
