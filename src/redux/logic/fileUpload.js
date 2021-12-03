@@ -44,9 +44,11 @@ const fileUploadPostLogic = createLogic({
     };
     const config = {
       headers: {
-        'Content-Type': 'text/xml'
+        // 'Content-Type': 'text/xml',
         // 'Access-Control-Allow-Headers': '*',
         // 'Access-Control-Allow-Origin': '*'
+        'Content-Type': 'text/plain; charset=UTF-8',
+        'Content-Transfer-Encoding': '8bit'
       },
       onUploadProgress: handleFileUploadProgress
     };

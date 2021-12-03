@@ -92,7 +92,7 @@ const Sidebar = ({ ...props }) => {
   );
   const brand = (
     <div className={classes.logo}>
-      <a href="https://www.linkedin.com/in/renzo-mischianti/" className={classes.logoLink}>
+      <a href="https://www.mischianti.org" className={classes.logoLink}>
         <div className={classes.logoImage}>
           <img src={logo} alt="logo" className={classes.img} />
         </div>

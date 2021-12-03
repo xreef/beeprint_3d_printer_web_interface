@@ -94,7 +94,6 @@ export default function fitDimensionsBox(WrappedComponent, props = {}) {
 
     componentDidMount() {
       window.addEventListener('resize', () => {
-        debugger
         this.eventResize();
         setTimeout(this.eventResize, 250);
         setTimeout(this.eventResize, 260);

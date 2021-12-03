@@ -77,6 +77,7 @@ class App extends React.Component {
   };
 
   handleDrawerToggle = () => {
+    // debugger
     this.setState({ mobileOpen: !this.state.mobileOpen });
   };
   getRoute() {

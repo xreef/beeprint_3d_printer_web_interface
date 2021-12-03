@@ -75,7 +75,7 @@ class ResponsiveDrawer extends React.Component {
   }
 
   handleDrawerToggle = () => {
-
+// debugger
   };
 
   handleMousedown = e => {
@@ -107,18 +107,18 @@ class ResponsiveDrawer extends React.Component {
   };
 
   componentDidMount() {
-    document.addEventListener('mousemove', e => this.handleMousemove(e));
-    document.addEventListener('mouseup', e => this.handleMouseup(e));
-    document.addEventListener('touchmove', e => this.handleMousemove(e));
-    document.addEventListener('touchend', e => this.handleMouseup(e));
+    // document.addEventListener('mousemove', e => this.handleMousemove(e));
+    // document.addEventListener('mouseup', e => this.handleMouseup(e));
+    // document.addEventListener('touchmove', e => this.handleMousemove(e));
+    // document.addEventListener('touchend', e => this.handleMouseup(e));
   }
 
   componentWillUnmount () {
-    document.removeEventListener('mousemove', e => this.handleMousemove(e));
-    document.removeEventListener('mouseup', e => this.handleMouseup(e));
-
-    document.removeEventListener('touchmove', e => this.handleMousemove(e));
-    document.removeEventListener('touchend', e => this.handleMouseup(e));
+    // document.removeEventListener('mousemove', e => this.handleMousemove(e));
+    // document.removeEventListener('mouseup', e => this.handleMouseup(e));
+    //
+    // document.removeEventListener('touchmove', e => this.handleMousemove(e));
+    // document.removeEventListener('touchend', e => this.handleMouseup(e));
   }
 
   componentDidUpdate (prevProps, prevState, snapshot) {
@@ -168,6 +168,12 @@ class ResponsiveDrawer extends React.Component {
                    onTouchStart={event => {
                      this.handleMousedown(event);
                    }}
+
+                   onMouseMove={e => this.handleMousemove(e)}
+                   onMouseUp={e => this.handleMouseup(e)}
+
+                   onTouchMove={e => this.handleMousemove(e)}
+                   onTouchEnd={e => this.handleMouseup(e)}
               >
                 <ControlPoint fontSize="large" />
               </Fab>
