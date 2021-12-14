@@ -29,6 +29,7 @@ import CardBody from '../../../component/card/CardBody'
 import { cameraControlFetch, cameraStatusFetch } from '../../../redux/actions'
 import CircularProgress from '@material-ui/core/CircularProgress'
 import * as colorMod from '../../../component/style/material-dashboard-react'
+import { withSize } from 'react-sizeme'
 
 
 class InformativeRealtimeBox extends React.Component {
@@ -39,14 +40,26 @@ class InformativeRealtimeBox extends React.Component {
   }
 
   shouldComponentUpdate (nextProps, nextState, nextContext) {
+    // if (document.getElementById("imgContainer") && document.getElementById("imgId")) {
+    //   document.getElementById("imgId").width = document.getElementById("imgContainer").offsetHeight;
+    //   document.getElementById("imgId").height = document.getElementById("imgContainer").offsetWidth-65;
+    // }
     if (nextProps.cameraIP!==this.props.cameraIP ||
         nextProps.isInHome!==this.props.isInHome ||
-        nextProps.cameraState.flash !== this.props.cameraState.flash
+        nextProps.cameraState.flash !== this.props.cameraState.flash ||
+
+      (nextProps.size && (
+        nextProps.size.width !== this.props.size.width ||
+        nextProps.size.height !== this.props.size.height
+        ))
     ) return true;
     return false;
   }
 
   componentDidUpdate (prevProps, prevState, snapshot) {
+    // document.getElementById("imgId").width = document.getElementById("imgContainer").offsetHeight;
+    // document.getElementById("imgId").height = document.getElementById("imgContainer").offsetWidth-65;
+
     if (prevProps.cameraIP!==this.props.cameraIP && this.props.cameraIP){
       this.props.cameraStatusFetch();
     }
@@ -70,10 +83,46 @@ class InformativeRealtimeBox extends React.Component {
   render() {
     const { classes, id } = this.props;
     const {
-      value, dataType, lastUpdate, isInHome, cameraIP, cameraState, color
+      value, dataType, lastUpdate, isInHome, cameraIP, rotateCamera, cameraState, color
     } = this.props;
 
+    const {size} = this.props;
+
     const { flash } = cameraState;
+
+    const rotateStyle = {
+      alignSelf: "stretch",
+      transform: "rotate(90deg) translateY(-100%)",
+      objectFit: 'contain',
+      backgroundColor: '#353535',
+      width: size.height-65,
+      height: size.width-40,
+      transformOrigin: "top left"
+    };
+
+    const rotateStyle270 = {
+      ...rotateStyle,
+      transform: "rotate(-90deg) translateX(-100%)"
+    };
+    const rotateStyle90 = {
+      ...rotateStyle,
+      transform: "rotate(90deg) translateY(-100%)"
+    }
+
+    const notRotateStyle = {
+      objectFit: 'contain',
+      height: '100%',
+      width: '100%',
+      backgroundColor: '#353535'
+    };
+
+    const cameraStyleMap = {
+      "-90": rotateStyle270,
+      "0": notRotateStyle,
+      "90": rotateStyle90
+    }
+
+    const cameraStyle = cameraStyleMap[""+(rotateCamera || 0)];
 
     return (
       <Card>
@@ -88,9 +137,9 @@ class InformativeRealtimeBox extends React.Component {
           </p>
 
         </CardHeader>
-        <CardBody style={{marginTop: '-32px', height: 'calc( 100% - 65px )'}}>
+        <CardBody id="imgContainer" style={{marginTop: '-32px', height: 'calc( 100% - 65px )', overflow: "hidden"}}>
           {(cameraIP)?([
-          <img key="imgId" style={{objectFit: 'contain', height: '100%', width: '100%', backgroundColor: '#353535'}} src={'http://'+cameraIP+':81/stream'}  />,
+          <img key="imgId" id="imgId" style={cameraStyle} src={'http://'+cameraIP+':81/stream'} />,
           <Button key="but1Id" color="transparent" className={classes.buttonFavoriteHeader} style={{top: 'auto', bottom: '20px', right: '23px', color: 'white', height: '20px' }} onClick={this.handleHome}>
             {isInHome ? <FavoriteIconSelected  /> : <FavoriteIcon />}
           </Button>,
@@ -131,4 +180,4 @@ InformativeRealtimeBox.defaultProps = {
 };
 
 
-export default withStyles(boxStyle)(injectIntl(InformativeRealtimeBox));
+export default withStyles(boxStyle)(injectIntl(withSize({monitorHeight: true})(InformativeRealtimeBox)));

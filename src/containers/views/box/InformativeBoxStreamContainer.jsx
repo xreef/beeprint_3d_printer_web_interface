@@ -19,6 +19,7 @@ const mapStateToProps = (state, ownProps) => ({
   dataType: 'video',
   isInHome: isElementInHome(ownProps.boxType, homeSelector.elements(state)),
   cameraIP: state.configuration.data && state.configuration.data.camera && state.configuration.data.camera.streamingUrl,
+  rotateCamera: state.configuration.data && state.configuration.data.camera && state.configuration.data.camera.rotateCamera,
   cameraState: state.cameraControl.data
 });
 

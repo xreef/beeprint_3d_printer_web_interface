@@ -103,6 +103,7 @@
     "configuration.camera.subtitle": "Use an esp32-cam like in the article",
     "configuration.camera.streamingurl.label": "esp32-cam IP",
     "configuration.camera.update": "Update camera configuration",
+    "configuration.camera.rotation.label": "Camera rotation",
 
     "configuration.email.notification.title": "Notification settings",
     "configuration.email.notification.finishprintemail.label": "Email for notification of finish print",
@@ -239,6 +240,7 @@
     "configuration.camera.subtitle": "Usa un esp32-cam modificato come da articolo",
     "configuration.camera.streamingurl.label": "IP dell'esp32-cam",
     "configuration.camera.update": "Aggiorna dati camera",
+    "configuration.camera.rotation.label": "Rotazione camera",
 
     "configuration.email.notification.title": "Impostazioni di notifica",
     "configuration.email.notification.finishprintemail.label": "Email per notifica completamento job",
@@ -369,7 +371,7 @@
     "configuration.camera.subtitle": "Use an esp32-cam like in the article",
     "configuration.camera.streamingurl.label": "esp32-cam IP",
     "configuration.camera.update": "Сохранить настройки камеры",
-
+    "configuration.camera.rotation.label": "Вращение камеры",
     "configuration.email.notification.title": "Notification settings",
     "configuration.email.notification.finishprintemail.label": "Email для уведомления о завершении печати",
     "configuration.email.notification.subtitle": "Configure Server SMTP first",

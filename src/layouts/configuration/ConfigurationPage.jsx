@@ -40,6 +40,8 @@ import GridItem from '../../component/grid/GridItem';
 import Overlay from '../../component/overlay/Overlay';
 
 import boxStyle from '../box/style/boxStyle'
+import Slider from '@material-ui/core/Slider';
+import Typography from '@material-ui/core/Typography';
 
 function Transition(props) {
   return <Slide direction="down" {...props} />;
@@ -51,6 +53,25 @@ function shallowCompare(newObj, prevObj) {
   }
   return false;
 }
+
+const marks = [
+  {
+    value: -90,
+    label: '-90°',
+  },
+  {
+    value: 0,
+    label: 'Normal',
+  },
+  {
+    value: 90,
+    label: '90°',
+  }
+];
+
+// function valuetext(value) {
+//   return `${value}°`;
+// }
 
 class ConfigurationPage extends React.PureComponent {
   constructor(props) {
@@ -78,7 +99,8 @@ class ConfigurationPage extends React.PureComponent {
         finishPrintEmail: '',
       },
       camera: {
-        streamingUrl: ''
+        streamingUrl: '',
+        rotateCamera: 0
       },
 
       // Password textfield
@@ -117,12 +139,17 @@ class ConfigurationPage extends React.PureComponent {
   };
 
   handleCameraChange = (event) => {
+    debugger
     this.setState({
       camera: {
         ...this.state.camera,
         ...{ [event.target.name]: event.target.value }
       }
     });
+  };
+
+  handleSliderChange = (event, newValue) => {
+    this.setState({camera: {...this.state.camera, ...{rotateCamera :newValue}}});
   };
 
   handleChangeEnabled = (event) => {
@@ -428,7 +455,7 @@ class ConfigurationPage extends React.PureComponent {
                   <CardBody>
 
                     <GridContainer>
-                      <GridItem xs={12} sm={12} md={6}>
+                      <GridItem xs={12} sm={6} md={6}>
                         <TextField
                           required
                           id="streamingUrl"
@@ -447,6 +474,26 @@ class ConfigurationPage extends React.PureComponent {
                           InputLabelProps={{
                             shrink: true,
                           }}
+                        />
+                      </GridItem>
+                      <GridItem xs={12} sm={6} md={6} style={{ textAlign: "center", display: "flex", marginTop: "10px"}}>
+                        <Typography id="discrete-slider-always" gutterBottom>
+                          <FormattedMessage id="configuration.camera.rotation.label"/>
+                        </Typography>
+                        <Slider
+                          id="rotateCamera"
+                          name="rotateCamera"
+                          value={this.state.camera.rotateCamera}
+                          style={{ width: 'calc( 100% - 70px )'}}
+                          defaultValue={this.state.camera.rotateCamera}
+                          // getAriaValueText={valuetext}
+                          aria-labelledby="discrete-slider-always"
+                          step={90}
+                          marks={marks}
+                          valueLabelDisplay="off"
+                          max={90}
+                          min={-90}
+                          onChange={this.handleSliderChange}
                         />
                       </GridItem>
                     </GridContainer>

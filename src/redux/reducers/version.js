@@ -1,6 +1,6 @@
 const version = (state = {
-  version: '1.0',
-  date: '17/11/2021',
+  version: '1.1',
+  date: '14/12/2021',
   version_fw: '-',
   date_fw: '-'
 }
