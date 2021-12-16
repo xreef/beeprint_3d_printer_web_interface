@@ -1,30 +1,40 @@
 import React from 'react';
-// import moment from 'moment';
-// import ChartBoxProductionPowerContainer from '../../containers/views/box/ChartBoxProductionPowerContainer';
-// import ChartBoxProductionCurrentContainer from '../../containers/views/box/ChartBoxProductionCurrentContainer';
-// import ChartBoxBatteryContainer from '../../containers/views/box/ChartBoxBatteryContainer';
-// import ChartBoxProductionVoltageContainer from '../../containers/views/box/ChartBoxProductionVoltageContainer';
-// import InformativeBoxLifetimeProductionContainer from '../../containers/views/box/InformativeBoxLifetimeProductionContainer';
-// import InformativeBoxYearlyProductionContainer from '../../containers/views/box/InformativeBoxYearlyProductionContainer';
-// import InformativeBoxMontlyProductionContainer from '../../containers/views/box/InformativeBoxMontlyProductionContainer';
-// import InformativeBoxWeeklyProductionContainer from '../../containers/views/box/InformativeBoxWeeklyProductionContainer';
-// import InformativeBoxDailyProductionContainer from '../../containers/views/box/InformativeBoxDailyProductionContainer';
-// import InformativeBoxRealtimeProductionContainer from '../../containers/views/box/InformativeBoxRealtimeProductionContainer';
+
 import InformativeBoxT0TempContainer from '../../containers/views/box/InformativeBoxT0TempContainer';
 import InformativeBoxT1TempContainer from '../../containers/views/box/InformativeBoxT1TempContainer';
 import InformativeBoxBedTempContainer from '../../containers/views/box/InformativeBoxBedTempContainer';
 import InformativeBoxStatusContainer from '../../containers/views/box/InformativeBoxStatusContainer';
 import ChartBoxTemperaturesContainer from '../../containers/views/box/ChartBoxTemperaturesContainer';
-// import TableBoxFileList from './tableBox/TableBoxFileList';
+
 import TableBoxFileListContainer from '../../containers/views/box/TableBoxFileListContainer'
-// import FileUpload from './inputBox/FileUpload'
+
 import FileUploadContainer from '../../containers/views/box/FileUploadContainer'
 import InformativeBoxPrintingContainer from '../../containers/views/box/InformativeBoxPrintingContainer'
 import InformativeBoxStreamContainer from '../../containers/views/box/InformativeBoxStreamContainer'
 import InformativeBoxMoveContainer from '../../containers/views/box/InformativeBoxMoveContainer'
 import InformativeBoxFanContainer from '../../containers/views/box/InformativeBoxFanContainer'
 
+import GCodeEditor from './inputBox/GCodeEditor'
+import GCodeSenderContainer from '../../containers/views/box/GCodeSenderContainer'
+
 const boxes = {
+  inputGCodeEditor: {
+    additionalInfo: {
+      classObj: (id, props) => (<GCodeSenderContainer key={id} id={id} {...props} />),
+      defaultProps: {
+        color: 'success'
+      },
+      boxType: 'inputGCodeEditor'
+    },
+    resize: true,
+    close: true,
+    minW: 1,
+    maxW: 3,
+    minH: 2,
+    maxH: 6,
+    w: 1,
+    h: 2
+  },
   informativeBoxT0TempContainer: {
     additionalInfo: {
       classObj: (id, props) => (<InformativeBoxT0TempContainer key={id} id={id} {...props} />),
@@ -203,9 +213,9 @@ const grayColor = '#999999';
     resize: false,
     close: true,
     minW: 1,
-    maxW: 4,
-    minH: 1,
-    maxH: 4,
+    maxW: 1,
+    minH: 2,
+    maxH: 2,
     w: 1,
     h: 2
   },
@@ -220,9 +230,9 @@ const grayColor = '#999999';
     resize: false,
     close: true,
     minW: 1,
-    maxW: 4,
-    minH: 1,
-    maxH: 4,
+    maxW: 1,
+    minH: 2,
+    maxH: 2,
     w: 1,
     h: 2
   },
@@ -239,9 +249,9 @@ const grayColor = '#999999';
     resize: false,
     close: true,
     minW: 1,
-    maxW: 4,
-    minH: 1,
-    maxH: 4,
+    maxW: 1,
+    minH: 2,
+    maxH: 2,
     w: 1,
     h: 2
   },

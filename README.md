@@ -22,3 +22,6 @@ You can find It [here](https://github.com/xreef/MKS_WIFI_MISCHIANTI)
 - Launch `npm run build`
 - Copy all the content of folder `build` to data folder of MKS WiFi MISCHIANTI
 - Upload to SPIFFS
+
+### Changelog
+ - 14/12/2021 1.1 Add Camera rotation features 

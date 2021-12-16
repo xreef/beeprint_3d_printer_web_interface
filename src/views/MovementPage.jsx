@@ -22,6 +22,7 @@ class MovementPage extends React.Component {
         // {i: guid(), ...{...boxes['informativeBoxMontlyProductionContainer']}},
         // {i: guid(), ...{...boxes['informativeBoxWeeklyProductionContainer']}}
         // { i: 'informativeBoxT0TempContainerId', ...{ ...boxes.informativeBoxT0TempContainer } },
+        { i: 'inputGCodeEditor', ...{ ...boxes.inputGCodeEditor } },
         { i: 'informativeBoxMoveContainer', ...{ ...boxes.informativeBoxMoveContainer } }
         // { i: 'tableBoxFileListContainerId', ...{ ...boxes.tableBoxFileListContainer } },
         // { i: 'fileUploadContainerId', ...{ ...boxes.fileUploadContainer } }

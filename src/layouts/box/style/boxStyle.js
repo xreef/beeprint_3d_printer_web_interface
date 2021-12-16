@@ -1,6 +1,10 @@
 import headerLinksStyle from '../../../component/header/style/headerLinksStyle';
 
 const boxStyle = theme => ({
+  executionMarker: {
+    backgroundColor: 'yellow',
+    position: 'absolute'
+  },
   imageIcon: {
     fill: 'rgba(255,255,255,.62)',
     width: '1em',

@@ -82,6 +82,12 @@
     "box.file.upload.dialog.text": "File already exist, continue? A progressive will be added at the end of the file. And this file will always be used.",
     "box.file.upload.subtitle": "Add file to the 3D printer SD",
 
+    "box.gcode.title": "GCode sender",
+    "box.gcode.subtitle": "Write on editor and send",
+    "box.gcode.send": "Send",
+    "box.gcode.placeholder": "Insert your gcode here",
+    "box.gcode.message.sended": "{numGcodeLine} GCode commands sended!",
+
     "table.file.list.title": "File list",
     "table.file.list.subtitle": "All files inside sd card",
 
@@ -218,6 +224,12 @@
 
      "box.file.upload.dialog.text": "Il file esiste già, continuare? Verrà apposto un progressivo al termine del file. E sarà usato sempre questo file.",
 
+    "box.gcode.title": "Invio GCode",
+    "box.gcode.subtitle": "Scrivi ed invia",
+    "box.gcode.send": "Invio",
+    "box.gcode.placeholder": "Inserisci il tuo gcode qui",
+    "box.gcode.message.sended": "Inviati {numGcodeLine} comandi GCode!",
+
     "table.file.list.title": "Lista file",
     "table.file.list.subtitle": "Tutti i file dell'SD Card",
 
@@ -349,6 +361,12 @@
     "box.file.upload.upload": "Upload",
     "box.file.upload.dialog.text": "File already exist, continue? A progressive will be added at the end of the file. And this file will always be used.",
     "box.file.upload.subtitle": "Добавить файл на SD-карту 3D-принтера",
+
+    "box.gcode.title": "Отправитель GCode",
+    "box.gcode.subtitle": "Напишите и отправьте",
+    "box.gcode.send": "Отправлять",
+    "box.gcode.placeholder": "Вставьте сюда свой gcode",
+    "box.gcode.message.sended": "Отправлено {numGcodeLine} команд GCode!",
 
     "table.file.list.title": "Список файлов",
     "table.file.list.subtitle": "Все файлы на SD-карте",
