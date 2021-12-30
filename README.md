@@ -24,4 +24,8 @@ You can find It [here](https://github.com/xreef/MKS_WIFI_MISCHIANTI)
 - Upload to SPIFFS
 
 ### Changelog
- - 14/12/2021 1.1 Add Camera rotation features 
+- 30/12/2021 1.2 GCode sender
+- 14/12/2021 1.1 Add Camera rotation features
+
+### Thanks to
+![JetBrains Black Box Logo logo](https://resources.jetbrains.com/storage/products/company/brand/logos/jb_square.svg)

@@ -106,7 +106,7 @@ class GCodeEditor extends React.Component {
         endRow: 0
       }})
 
-    addNotification({ message: <FormattedMessage id="box.gcode.message.sended" values={{ numGcodeLine: lines.length }} />, variant: 'warning', autoHide: false })
+    addNotification({ message: <FormattedMessage id="box.gcode.message.sended" values={{ numGcodeLine: lines.length }} />, variant: 'success', autoHide: false })
   }
 
   refreshData = () => {
