@@ -31,6 +31,7 @@ import fileList from './fileList';
 import fileUpload from './fileUpload';
 import configuration from './configuration';
 import cameraControl from './cameraControl';
+import configurationServer from './configurationServer';
 
 const reducersBeePrintMKSWIFIMischianti = combineReducers({
   version,
@@ -63,7 +64,8 @@ const reducersBeePrintMKSWIFIMischianti = combineReducers({
   streamPage,
   movementPage,
   configuration,
-  cameraControl
+  cameraControl,
+  configurationServer
 });
 
 export default reducersBeePrintMKSWIFIMischianti;

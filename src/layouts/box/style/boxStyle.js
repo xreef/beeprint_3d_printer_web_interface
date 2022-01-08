@@ -85,7 +85,7 @@ const boxStyle = theme => ({
   textField: {
     marginLeft: theme.spacing(),
     marginRight: theme.spacing(),
-    width: 122
+    // width: 122
   },
   textFieldInput: {
     padding: '4px 0 7px',

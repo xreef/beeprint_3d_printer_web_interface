@@ -59,6 +59,8 @@ class ChartBoxTemperaturesRealtime extends React.Component {
     this.refreshChart();
   };
 
+  refreshChart = () => {}
+
   handleHome = () => {
     const {
       isInHome, removeElementFromHome, addElementToHome, boxType, yCoordinateList

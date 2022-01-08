@@ -18,6 +18,9 @@ import configurationGET from './configurationGET';
 import configurationPost from './configurationPost';
 import cameraControl from './cameraControl';
 
+import configurationServerGET from './configurationServerGET';
+import configurationServerSET from './configurationServerSET';
+
 export default [
   // ...inverterDailyPowerFetchLogic,
   // ...inverterDailyCurrentFetchLogic,
@@ -37,5 +40,8 @@ export default [
   ...fileUpload,
   ...configurationGET,
   ...configurationPost,
-  ...cameraControl
+  ...cameraControl,
+
+  ...configurationServerGET,
+  ...configurationServerSET
 ];

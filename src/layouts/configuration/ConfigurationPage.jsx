@@ -42,6 +42,7 @@ import Overlay from '../../component/overlay/Overlay';
 import boxStyle from '../box/style/boxStyle'
 import Slider from '@material-ui/core/Slider';
 import Typography from '@material-ui/core/Typography';
+import { configurationServerAdd, configurationServerFetch, configurationServerFieldUpdated } from '../../redux/actions'
 
 function Transition(props) {
   return <Slide direction="down" {...props} />;
@@ -102,6 +103,16 @@ class ConfigurationPage extends React.PureComponent {
         streamingUrl: '',
         rotateCamera: 0
       },
+      server: {
+        webhostname: '',
+        isStatic: false,
+        ip: '',
+        gw: '',
+        sm: '',
+
+        dns1: '',
+        dns2: ''
+      },
 
       // Password textfield
       showPassword: false
@@ -111,6 +122,7 @@ class ConfigurationPage extends React.PureComponent {
 
   componentDidMount() {
     this.props.configurationFetch();
+    this.props.configurationServerFetch();
   }
 
   componentDidUpdate(oldProps) {
@@ -119,10 +131,17 @@ class ConfigurationPage extends React.PureComponent {
       || (this.props.configuration != null && oldProps.configuration != null && shallowCompare(this.props.configuration.server, oldProps.configuration.server))) {
       this.setState({
         // preferences: { ...this.state.preferences, ...this.props.configuration.preferences },
-        // server: { ...this.state.server, ...this.props.configuration.server },
         serverSMTP: { ...this.state.serverSMTP, ...this.props.configuration.serverSMTP },
         emailNotification: { ...this.state.emailNotification, ...this.props.configuration.emailNotification },
         camera: { ...this.state.camera, ...this.props.configuration.camera }
+      });
+    }
+    if
+    ((this.props.configurationServer != null && oldProps.configurationServer === null)
+      || (this.props.configurationServer != null && oldProps.configurationServer != null && shallowCompare(this.props.configurationServer.server, oldProps.configurationServer.server))) {
+      this.setState({
+        // preferences: { ...this.state.preferences, ...this.props.configurationServer.preferences },
+        server: { ...this.state.server, ...this.props.configurationServer.server },
       });
     }
   }
@@ -156,6 +175,15 @@ class ConfigurationPage extends React.PureComponent {
     this.setState({ [event.target.name]: event.target.value });
   };
 
+  handleServerChange = (event) => {
+    this.setState({
+      server: {
+        ...this.state.server,
+        ...{ [event.target.name]: (event.target.name === 'isStatic') ? (event.target.checked)?1:0 : event.target.value }
+      }
+    });
+  };
+
   handleClickOpen = (modal) => {
     const x = [];
     x[modal] = true;
@@ -173,11 +201,17 @@ class ConfigurationPage extends React.PureComponent {
   };
 
   postConfigurationUpdate = type => (event) => {
-    const { configuration, configurationFieldUpdated, configurationAdd } = this.props;
+    debugger
+    const { configuration, configurationFieldUpdated, configurationAdd, configurationServerFieldUpdated, configurationServerAdd } = this.props;
     // const { server } = this.state;
 
-    configurationFieldUpdated({ [type]: this.state[type] });
-    configurationAdd(event);
+    if (type == "server") {
+      configurationServerFieldUpdated({ [type]: this.state[type] });
+      configurationServerAdd(event);
+    } else {
+      configurationFieldUpdated({ [type]: this.state[type] });
+      configurationAdd(event);
+    }
   };
 
   handleEmailNotificationChange = (event) => {
@@ -435,6 +469,158 @@ class ConfigurationPage extends React.PureComponent {
             </GridContainer>]):null
             }
             <GridContainer>
+              <GridItem xs={12} sm={12} md={12}>
+                <Card>
+                  <CardHeader color="primary">
+                    <h4 className={classes.cardTitleWhite}>
+                      <FormattedMessage
+                        id="configuration.network.title"
+                      />
+                    </h4>
+                    <p className={classes.cardCategoryWhite}>
+                      <FormattedMessage
+                        id="configuration.network.subtitle"
+                      />
+                    </p>
+                  </CardHeader>
+                  <form onSubmit={this.postConfigurationUpdate('server')}>
+                    <CardBody>
+                      <GridContainer>
+                        <GridItem xs={12} sm={8} md={8}>
+                          <TextField
+                            required
+                            id="webhostname"
+                            name="webhostname"
+                            label="Hostname"
+                            fullWidth
+                            className={classes.textField}
+                            value={this.state.server.webhostname}
+                            onChange={this.handleServerChange}
+                            margin="normal"
+                            variant="standard"
+                          />
+                        </GridItem>
+                        <GridItem xs={12} sm={4} md={4} />
+                      </GridContainer>
+                      <GridContainer>
+                        <GridItem xs={12} sm={5} md={5}>
+                          <FormControlLabel
+                            control={(
+                              <Switch
+                                checked={this.state.server.isStatic}
+                                onChange={this.handleServerChange}
+                                value="isStatic"
+                                name="isStatic"
+                                color="primary"
+                                classes={{
+                                  switchBase: classes.switchBase,
+                                  checked: classes.switchChecked,
+                                  icon: classes.switchIcon,
+                                  iconChecked: classes.switchIconChecked,
+                                  bar: classes.switchBar
+                                }}
+                              />
+                            )}
+                            classes={{
+                              label: classes.label
+                            }}
+                            label={<FormattedMessage id="configuration.network.staticIP.label" />}
+                          />
+                        </GridItem>
+                      </GridContainer>
+                      {(this.state.server.isStatic)?[
+                      <GridContainer>
+                        <GridItem xs={12} sm={4} md={4}>
+                          <TextField
+                            required
+                            id="ip"
+                            name="ip"
+                            label="IP"
+                            fullWidth
+                            className={classes.textField}
+                            value={this.state.server.ip}
+                            onChange={this.handleServerChange}
+                            margin="normal"
+                            variant="standard"
+                          />
+                        </GridItem>
+                        <GridItem xs={12} sm={4} md={4}>
+                          <TextField
+                            required
+                            id="gw"
+                            name="gw"
+                            label="Gatway"
+                            fullWidth
+                            className={classes.textField}
+                            value={this.state.server.gw}
+                            onChange={this.handleServerChange}
+                            margin="normal"
+                            variant="standard"
+                          />
+                        </GridItem>
+                        <GridItem xs={12} sm={4} md={4}>
+                          <TextField
+                            required
+                            id="sm"
+                            name="sm"
+                            label="SubNet Mask"
+                            fullWidth
+                            className={classes.textField}
+                            value={this.state.server.sm}
+                            onChange={this.handleServerChange}
+                            margin="normal"
+                            variant="standard"
+                          />
+                        </GridItem>
+                      </GridContainer>,
+                      <GridContainer>
+                        <GridItem xs={12} sm={4} md={4}>
+                          <TextField
+                            required
+                            id="dns1"
+                            name="dns1"
+                            label="DNS 1"
+                            fullWidth
+                            className={classes.textField}
+                            value={this.state.server.dns1}
+                            onChange={this.handleServerChange}
+                            margin="normal"
+                            variant="standard"
+                          />
+                        </GridItem>
+                        {(false)?<GridItem xs={12} sm={4} md={4}>
+                          <TextField
+                            required
+                            id="dns2"
+                            name="dns2"
+                            label="DNS 2"
+                            fullWidth
+                            className={classes.textField}
+                            value={this.state.server.dns2}
+                            onChange={this.handleServerChange}
+                            margin="normal"
+                            variant="standard"
+                          />
+                        </GridItem>:null}
+                        <GridItem xs={12} sm={8} md={8}>
+                          &nbsp;
+                        </GridItem>
+                      </GridContainer>]:null}
+                    </CardBody>
+                    <CardFooter>
+                      <Button color="primary" type="submit">
+                        <FormattedMessage
+                          id="configuration.network.update"
+                        />
+                      </Button>
+                    </CardFooter>
+                  </form>
+
+                </Card>
+              </GridItem>
+            </GridContainer>
+
+            <GridContainer>
               <Card>
                 <CardHeader color="primary">
                   <h4 className={classes.cardTitleWhite}>
@@ -605,6 +791,10 @@ ConfigurationPage.propTypes = {
   classes: PropTypes.object.isRequired,
   configurationFetch: PropTypes.func.isRequired,
   configurationAdd: PropTypes.func.isRequired,
+  configurationServerFetch: PropTypes.func.isRequired,
+  configurationServerAdd: PropTypes.func.isRequired,
+  configurationServerFieldUpdated: PropTypes.func.isRequired,
+
   // addNotification: PropTypes.func.isRequired,
   configurationFieldUpdated: PropTypes.func.isRequired,
   version: PropTypes.object

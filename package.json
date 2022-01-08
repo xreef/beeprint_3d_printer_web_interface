@@ -1,7 +1,7 @@
 {
   "name": "beeprint_mks_wifi",
-  "version": "1.2.0",
-  "description": "React Webpack Babel Starter Kit",
+  "version": "1.4.0",
+  "description": "BeePrint MKS WiFi web interface",
   "main": "''",
   "scripts": {
     "clean": "shx rm -rf build",
@@ -16,11 +16,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/ReactJSResources/react-webpack-babel"
+    "url": "https://github.com/xreef/beeprint_mks_wifi_mischianti"
   },
-  "author": "ReactJSResources",
-  "license": "MIT",
-  "homepage": "https://github.com/ReactJSResources/react-webpack-babel#readme",
+  "author": "Renzo Mischianti",
+  "license": "CC BY-NC-ND",
+  "homepage": "https://www.mischianti.org/category/project/web-interface-beeprint-for-mks-wifi/",
   "dependencies": {
     "@babel/core": "^7.12.3",
     "@babel/polyfill": "^7.12.1",
