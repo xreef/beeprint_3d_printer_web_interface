@@ -130,6 +130,7 @@ class App extends React.Component {
     request.onreadystatechange = () => {
       var urlToSet = 'http://home.mischianti.org/advertising/beeprint.html';
       if (request.readyState === 4){
+        debugger
         if (request.status === 404) {
           // alert("Oh no, it does not exist!");
         } else if (request.status === 200) {
@@ -138,7 +139,7 @@ class App extends React.Component {
               var resp = JSON.parse(request.responseText);
               if (resp && resp.urlToSet) urlToSet = resp.urlToSet;
             }catch (e) {
-              console.log(e);
+              // console.log(e);
             }
           }
           this.setState({

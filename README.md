@@ -24,7 +24,7 @@ You can find It [here](https://github.com/xreef/MKS_WIFI_MISCHIANTI)
 - Upload to SPIFFS
 
 ### Changelog
-- 08/01/2022 1.4 Static IP configuration and mDNS
+- 08/01/2022 1.4 Static IP configuration and mDNS (minor fix)
 - 02/01/2022 1.3 Polish language
 - 30/12/2021 1.2 GCode sender
 - 14/12/2021 1.1 Add Camera rotation features

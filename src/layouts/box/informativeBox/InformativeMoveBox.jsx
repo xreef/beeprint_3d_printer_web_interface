@@ -139,23 +139,23 @@ class InformativeMoveBox extends React.Component {
               X/Y
             </Box>
             <Box className="mb25" display="flex" alignItems="center" justifyContent="center" height="40px">
-              <IconButton color="danger" aria-label="add an alarm" disabled={!inputEnabled} onClick={() => this.handleMove('Y', 1)}>
+              <IconButton color="primary" aria-label="add an alarm" disabled={!inputEnabled} onClick={() => this.handleMove('Y', 1)}>
                 <KeyboardArrowUpRoundedIcon />
               </IconButton>
             </Box>
             <Box className="mb25" display="flex" alignItems="center" justifyContent="center" height="40px">
-              <IconButton color="danger" aria-label="add an alarm"  disabled={!inputEnabled} onClick={() => this.handleMove('X', -1)}>
+              <IconButton color="primary" aria-label="add an alarm"  disabled={!inputEnabled} onClick={() => this.handleMove('X', -1)}>
                 <KeyboardArrowLeftRoundedIcon />
               </IconButton>
-              <IconButton color="danger" aria-label="add an alarm"   disabled={!inputEnabled} onClick={() => this.handleHomeAxis('XY')}>
+              <IconButton color="primary" aria-label="add an alarm"   disabled={!inputEnabled} onClick={() => this.handleHomeAxis('XY')}>
                 <HomeRounded />
               </IconButton>
-              <IconButton color="danger" aria-label="add an alarm"  disabled={!inputEnabled} onClick={() => this.handleMove('X', 1)}>
+              <IconButton color="primary" aria-label="add an alarm"  disabled={!inputEnabled} onClick={() => this.handleMove('X', 1)}>
                 <KeyboardArrowRightRoundedIcon />
               </IconButton>
             </Box>
             <Box className="mb25" display="flex" alignItems="center" justifyContent="center" height="40px" >
-              <IconButton color="danger" aria-label="add an alarm"  disabled={!inputEnabled} onClick={() => this.handleMove('Y', -1)}>
+              <IconButton color="primary" aria-label="add an alarm"  disabled={!inputEnabled} onClick={() => this.handleMove('Y', -1)}>
                 <KeyboardArrowDownRoundedIcon />
               </IconButton>
             </Box>
@@ -165,17 +165,17 @@ class InformativeMoveBox extends React.Component {
             Z
             </Box>
             <Box className="mb25" display="flex" alignItems="center" justifyContent="center" height="40px">
-              <IconButton color="danger" aria-label="add an alarm"  disabled={!inputEnabled} onClick={() => this.handleMove('Z', 1)}>
+              <IconButton color="primary" aria-label="add an alarm"  disabled={!inputEnabled} onClick={() => this.handleMove('Z', 1)}>
                 <KeyboardArrowUpRoundedIcon />
               </IconButton>
             </Box>
             <Box className="mb25" display="flex" alignItems="center" justifyContent="center" height="40px">
-              <IconButton color="danger" aria-label="add an alarm"  disabled={!inputEnabled} onClick={() => this.handleHomeAxis('Z')}>
+              <IconButton color="primary" aria-label="add an alarm"  disabled={!inputEnabled} onClick={() => this.handleHomeAxis('Z')}>
                 <HomeRounded />
               </IconButton>
             </Box>
             <Box className="mb25" display="flex" alignItems="center" justifyContent="center" height="40px">
-              <IconButton color="danger" aria-label="add an alarm" disabled={!inputEnabled} onClick={() => this.handleMove('Z', -1)}>
+              <IconButton color="primary" aria-label="add an alarm" disabled={!inputEnabled} onClick={() => this.handleMove('Z', -1)}>
                 <KeyboardArrowDownRoundedIcon />
               </IconButton>
             </Box>
@@ -186,14 +186,14 @@ class InformativeMoveBox extends React.Component {
               E1
             </Box>
             <Box className="mb25" display="flex" alignItems="center" justifyContent="center" height="40px">
-              <IconButton color="danger" aria-label="add an alarm"  disabled={!inputEnabled} onClick={() => this.handleExtrusion('T0', 1)}>
+              <IconButton color="primary" aria-label="add an alarm"  disabled={!inputEnabled} onClick={() => this.handleExtrusion('T0', 1)}>
                 <KeyboardArrowUpRoundedIcon />
               </IconButton>
             </Box>
             <Box className="mb25" display="flex" alignItems="center" justifyContent="center" height="40px">
             </Box>
             <Box className="mb25" display="flex" alignItems="center" justifyContent="center" height="40px">
-              <IconButton color="danger" aria-label="add an alarm"  disabled={!inputEnabled} onClick={() => this.handleExtrusion('T0', -1)}>
+              <IconButton color="primary" aria-label="add an alarm"  disabled={!inputEnabled} onClick={() => this.handleExtrusion('T0', -1)}>
                 <KeyboardArrowDownRoundedIcon />
               </IconButton>
             </Box>
@@ -204,7 +204,9 @@ class InformativeMoveBox extends React.Component {
 
             <Slider
               style={{ width: 'calc( 90% - 50px )', marginTop: '20px'}}
+/*
               defaultValue={value}
+*/
               value={stepSize}
               getAriaValueText={valuetext}
               color="primary"
