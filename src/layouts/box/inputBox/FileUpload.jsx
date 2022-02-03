@@ -37,7 +37,7 @@ import Close from '@material-ui/icons/Close'
 import Refresh from '@material-ui/icons/Refresh'
 import List from '@material-ui/core/List'
 import Reply from '@material-ui/icons/Reply'
-import { fileDelete, fileListRequest, fileUploadPost } from '../../../redux/actions'
+import { addNotification, fileDelete, fileListRequest, fileUploadPost } from '../../../redux/actions'
 import { selectAndPrint } from '../../../redux/additions/commands'
 const BorderLinearProgress = withStyles((theme) => ({
   root: {
@@ -118,7 +118,10 @@ class FileUpload extends React.Component {
     this.selectedFileName = selectedFileName;
     this.print = print;
 
-    if (filesMap.hasOwnProperty(selectedFileName.trim())){
+    if (selectedFileName.length>36) {
+      this.props.addNotification({ message: <FormattedMessage id="box.file.upload.fileNameTooLong" values={{ fileLength: selectedFileName.length }} />, variant: 'error', autoHide: false })
+
+    }else if (filesMap.hasOwnProperty(selectedFileName.trim())){
       this.setState({open: true})
     }else {
 
@@ -320,6 +323,7 @@ FileUpload.propTypes = {
   ]),
   addElementToHome: PropTypes.func.isRequired,
   removeElementFromHome: PropTypes.func.isRequired,
+  addNotification: PropTypes.func.isRequired,
   boxType: PropTypes.string.isRequired,
   isInHome: PropTypes.bool.isRequired,
   fileList: PropTypes.array,

@@ -5,8 +5,8 @@ import { selectors as fileListSelector } from '../../../redux/reducers/fileList'
 import {
   addElementToHome,
   removeElementFromHome,
-  fileUploadPost, fileListRequest, webSocketSendMessage
-} from '../../../redux/actions';
+  fileUploadPost, fileListRequest, webSocketSendMessage, addNotification
+} from '../../../redux/actions'
 
 import FileUpload from '../../../layouts/box/inputBox/FileUpload'
 
@@ -29,7 +29,8 @@ const mapDispatchToProps = {
   removeElementFromHome,
   fileUploadPost,
   fileListRequest,
-  webSocketSendMessage
+  webSocketSendMessage,
+  addNotification
   // fileUploadLoad
 };
 

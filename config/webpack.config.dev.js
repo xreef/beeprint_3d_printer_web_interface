@@ -34,7 +34,7 @@ const webpackConfig = merge(config, {
     progress: true,
     open: true,
     hot: true,
-    port: 8080
+    port: 3000
   },
   devtool: 'eval-cheap-module-source-map',
   plugins: [
